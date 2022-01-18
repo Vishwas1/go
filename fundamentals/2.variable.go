@@ -25,4 +25,13 @@ func main() {
 	const ENV = "YOU CAN NOT CHANGE THIS"
 	fmt.Println(ENV)
 
+	var days = []string{"hello", "hi", "test", "new", "old"}
+	printDays(days)
+
+}
+
+func printDays(days []string) {
+	for i := 0; i < len(days); i++ {
+		fmt.Println(days[i])
+	}
 }
