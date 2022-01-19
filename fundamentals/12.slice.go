@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 
@@ -94,6 +97,12 @@ func makeSlice() {
 		fmt.Println("Slice item", i, "is", v)
 	}
 
+	fmt.Println("========= Slice of Slice =============")
+	slicesOfSlices_Ex1()
+
+	fmt.Println("========= Slice of Slice: tic-tock game =============")
+	slicesOfSlices_Ex2()
+
 }
 
 func printSlice(s string, x []int) {
@@ -102,4 +111,66 @@ func printSlice(s string, x []int) {
 
 func printSlice2(s []int) {
 	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
+}
+
+func slicesOfSlices_Ex1() {
+
+	// declaring a slice of slices of
+	// type integer with a length of 3
+	slice_of_slices := make([][]int, 3)
+
+	for i := 0; i < 3; i++ {
+		// looping through the slice to declare
+		// slice of slice of length 3
+		slice_of_slices[i] = make([]int, 3)
+
+		// assigning values to each
+		// slice of a slice
+		for j := 0; j < 3; j++ {
+			slice_of_slices[i][j] = i * j
+		}
+	}
+
+	// printing the slice of slices matrix
+	for i := 0; i < 3; i++ {
+		fmt.Println(slice_of_slices[i])
+	}
+
+	fmt.Println("Slice of slices: ", slice_of_slices)
+}
+
+func slicesOfSlices_Ex2() {
+
+	//// Bad way to initialise the tic tok board
+	// board := make([][]string, 3)
+	// for i := 0; i < 3; i++ {
+	// 	board[i] = make([]string, 3)
+	// 	for j := 0; j < 3; j++ {
+	// 		board[i][j] = "_"
+	// 	}
+	// }
+
+	//// Good way to initialise the tic tok board
+	board := [][]string{
+		[]string{"_", "_", "_"},
+		[]string{"_", "_", "_"},
+		[]string{"_", "_", "_"},
+	}
+
+	// print the blank board
+	for i := 0; i < len(board); i++ {
+		fmt.Printf("%s\n", strings.Join(board[i], " "))
+	}
+
+	// players takes turn to paly the game
+	board[0][0] = "X"
+	board[2][2] = "O"
+	board[1][2] = "0"
+	board[1][0] = "O"
+	board[0][2] = "X"
+
+	for i := 0; i < len(board); i++ {
+		fmt.Printf("%s\n", strings.Join(board[i], " "))
+	}
+
 }
