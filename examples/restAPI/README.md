@@ -9,3 +9,10 @@
 - `GET`  http://localhost:8080/:id
 - `POST`  http://localhost:8080
 
+
+## Run 
+
+```bash
+cd src
+go run .
+```
