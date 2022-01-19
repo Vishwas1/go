@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 //// Syntax 1
 func add(x int, y int) int {
@@ -24,6 +27,10 @@ func addSub2(x, y int) (res1 int, res2 int) {
 	return
 }
 
+func compute(fn func(float64, float64) float64) float64 {
+	return fn(3, 4)
+}
+
 func main() {
 
 	num1 := 5
@@ -41,5 +48,14 @@ func main() {
 	addition1, subtraction1 := addSub2(num1, num2)
 	// prints 9 1
 	fmt.Println(addition1, subtraction1)
+
+	// Function used as variable
+	hypot := func(x, y float64) float64 {
+		return math.Sqrt(x*x + y*y)
+	}
+	fmt.Println(hypot(5, 12))
+
+	// Funcation passed as parameter to another funcation
+	fmt.Println(compute(hypot))
 
 }
