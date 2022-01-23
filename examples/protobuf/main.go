@@ -4,18 +4,21 @@ import (
 	"fmt"
 	"log"
 
+	"go/examples/protobuf/demo"
+
 	"google.golang.org/protobuf/proto"
 )
 
 func main() {
-	vishwas := &Person{
+	vishwas := &demo.Person{
 		Name: "Vishwas",
 		Age:  24,
-		Followers: &Followers{
+		Followers: &demo.Followers{
 			Youtube: 1400,
 			Twitter: 2330,
 		},
 	}
+	fmt.Println("Actual message: ", vishwas)
 
 	// Marshalling into proto
 	data, err := proto.Marshal(vishwas)
@@ -23,10 +26,10 @@ func main() {
 		log.Fatal("Marshalling err : ", err)
 	}
 
-	fmt.Println(data)
+	fmt.Println("Serialised message: ", data)
 
 	// Unmarshalling
-	newVishwas := &Person{}
+	newVishwas := &demo.Person{}
 	err = proto.Unmarshal(data, newVishwas)
 	if err != nil {
 		log.Fatal("UnMarshalling err : ", err)
