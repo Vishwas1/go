@@ -1,0 +1,24 @@
+syntax="proto3";
+
+package main;
+
+option go_package = "./payment";
+
+message TxRequest {
+    string from = 1;
+    string to = 2;
+    float amount = 3;
+}
+
+message TxResponse {
+    bool success = 1;
+}
+
+
+// Defines Grpc service
+// Ref: https://developers.google.com/protocol-buffers/docs/proto3#services
+// https://grpc.io/docs/languages/go/basics/
+service PaymentService {
+    rpc Transfer(TxRequest) returns (TxResponse) {}
+}
+
